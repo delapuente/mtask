@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>μTask</title>
+  <style>
+    * { margin: 0; padding: 0; }
+
+    html {
+      font-family: Arial;
+      font-size: 10pt;
+      height: 100%;
+    }
+
+    body {
+      display: -moz-box;
+      -moz-box-align: stretch;
+      width: 100%;
+      height: 100%;
+    }
+
+    #editpad {
+      -moz-box-flex: 1;
+      background-color: #033;
+      color: white;
+      padding: .5em;
+    }
+
+    #board {
+      display: -moz-box;
+      -moz-box-flex: 4;
+      resize: horizontal;
+    }
+
+    #board .group {
+      display: -moz-box;
+      -moz-box-pack: justify;
+      -moz-box-align: stretch;
+      -moz-box-flex: 1;
+    }
+
+    #board .group.vertical {
+      -moz-box-orient: block-axis;
+    }
+
+    #board .group.horizontal {
+      -moz-box-orient: inline-axis;
+    }
+
+    #board .group * {
+      -moz-box-flex: 1;
+    }
+
+    #board section {
+      border: 1px solid #EEE;
+      padding: 1em;
+    }
+
+    #board section:hover {
+      border: 2px solid #888;
+    }
+
+    #board section h1 {
+      border-bottom: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <section id="board">
+    <div class="group vertical">
+      <div class="group horizontal">
+        <section id="to_do">
+          <header>
+            <hgroup>
+              <h1>To do:</h1>
+            </hgroup>
+          </header>
+        </section>
+        <section id="doing">
+          <header>
+            <hgroup>
+              <h1>Doing:</h1>
+            </hgroup>
+          </header>
+        </section>
+        <section id="done">
+          <header>
+            <hgroup>
+              <h1>Done:</h1>
+            </hgroup>
+          </header>
+        </section>
+      </div>
+      <div class="group horizontal">
+        <section id="unscheduled">
+          <header>
+            <hgroup>
+              <h1>Unscheduled:</h1>
+            </hgroup>
+          </header>
+        </section>
+      </div>
+    </div>
+  </section>
+  <pre id="editpad" contenteditable="true">
+Unshecheduled:
+
+To do:
+  Task 2: Hacer vino caliente
+
+Doing:
+
+
+Done:
+  Task 1: Hacer momos
+
+--
+
+Task 1: Hacer momos
+Hacer momos es darse abrazos o bishitos
+Complete: 20h/160h
+
+Task 2: Hacer vino caliente
+Vino caliente según la receta de tal
+Complete: /6h
+  </pre>
+
+<script>
+  'use strict';
+  var editpad = document.getElementById('editpad');
+  editpad.addEventListener('input', function() {
+
+  });
+</script>
+</body>
+</html>
+
