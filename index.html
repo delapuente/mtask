@@ -12,100 +12,125 @@
       height: 100%;
     }
 
-    body {
+    p {
+      margin-bottom: .5em;
+    }
+
+    #editpad {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      background-color: #033;
+      color: white;
+      width: 30%;
+      overflow: auto;
+      height: 100%;
+      position: absolute;
+      right:0;
+      top:0;
+      bottom:0;
+      padding: .5em;
+      resize: none;
+    }
+
+    #board {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      display: box;
+      display: -webkit-box;
       display: -moz-box;
+      width: 70%;
+      position: absolute;
+      left:0;
+      top:0;
+      bottom:0;
+    }
+
+    #board .group {
+      display: box;
+      display: -webkit-box;
+      display: -moz-box;
+      box-pack: justify;
+      box-align: stretch;
+      box-flex: 1;
+      -webkit-box-pack: justify;
+      -webkit-box-align: stretch;
+      -webkit-box-flex: 1;
+      -moz-box-pack: justify;
       -moz-box-align: stretch;
+      -moz-box-flex: 1;
       width: 100%;
       height: 100%;
     }
 
-    #editpad {
-      -moz-box-flex: 1;
-      background-color: #033;
-      color: white;
-      padding: .5em;
-    }
-
-    #board {
-      display: -moz-box;
-      -moz-box-flex: 4;
-      resize: horizontal;
-    }
-
-    #board .group {
-      display: -moz-box;
-      -moz-box-pack: justify;
-      -moz-box-align: stretch;
-      -moz-box-flex: 1;
-    }
-
     #board .group.vertical {
+      box-orient: block-axis;
+      -webkit-box-orient: block-axis;
       -moz-box-orient: block-axis;
     }
 
     #board .group.horizontal {
+      box-orient: inline-axis;
+      -webkit-box-orient: inline-axis;
       -moz-box-orient: inline-axis;
     }
 
     #board .group * {
+      box-flex: 1;
+      -wenkit-box-flex: 1;
       -moz-box-flex: 1;
     }
 
     #board section {
-      border: 1px solid #EEE;
+      border: 1px dashed #EEE;
       padding: 1em;
     }
 
     #board section:hover {
-      border: 2px solid #888;
+      border: 1px solid #AAA;
     }
 
-    #board section h1 {
-      border-bottom: 1px solid black;
+    .node aside p {
+      text-align: right;
+      color: #FFE073;
+      text-shadow:1px 1px #222;
+    }
+
+    .node ul {
+      list-style: none;
+    }
+
+    .node ul li {
+      float: left;
+    }
+
+    .task {
+      display: block;
+      max-width: 20em;
+      margin: 1em;
+      padding: .5em;
+      border: 1px solid #FFD440;
+      border-radius: 5px;
+      background: #FFE073;
+      box-shadow: 1px 1px 2px #444;
+    }
+
+    .node h1 {
+      margin-top: .5em;
+      margin-bottom: .25em;
+    }
+
+    .node progress {
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <section id="board">
-    <div class="group vertical">
-      <div class="group horizontal">
-        <section id="to_do">
-          <header>
-            <hgroup>
-              <h1>To do:</h1>
-            </hgroup>
-          </header>
-        </section>
-        <section id="doing">
-          <header>
-            <hgroup>
-              <h1>Doing:</h1>
-            </hgroup>
-          </header>
-        </section>
-        <section id="done">
-          <header>
-            <hgroup>
-              <h1>Done:</h1>
-            </hgroup>
-          </header>
-        </section>
-      </div>
-      <div class="group horizontal">
-        <section id="unscheduled">
-          <header>
-            <hgroup>
-              <h1>Unscheduled:</h1>
-            </hgroup>
-          </header>
-        </section>
-      </div>
-    </div>
-  </section>
-  <pre id="editpad" contenteditable="true">[basic]
+  <textarea id="editpad" spellcheck="false">[basic]
 == Mis cosas ==
 
-Unshecheduled:
+Unscheduled:
 
 To do:
   Task 2: Hacer vino caliente
@@ -120,19 +145,194 @@ Done:
 
 Task 1: Hacer momos
 Hacer momos es darse abrazos o bishitos
-Complete: 20h/160h
+y mimos
+>> 20h/160h
 
 Task 2: Hacer vino caliente
 Vino caliente según la receta de tal
-Complete: /6h</pre>
-
+>> /6h</textarea>
+  <section id="board">
+    <div class="group vertical">
+      <div class="group horizontal">
+        <section id="to_do" class="node">
+          <header>
+            <hgroup>
+              <h1>To do:</h1>
+            </hgroup>
+          </header>
+          <ul>
+          </ul>
+        </section>
+        <section id="doing" class="node">
+          <header>
+            <hgroup>
+              <h1>Doing:</h1>
+            </hgroup>
+          </header>
+          <ul>
+          </ul>
+        </section>
+        <section id="done" class="node">
+          <header>
+            <hgroup>
+              <h1>Done:</h1>
+            </hgroup>
+          </header>
+          <ul>
+          </ul>
+        </section>
+      </div>
+      <div class="group horizontal">
+        <section id="unscheduled" class="node">
+          <header>
+            <hgroup>
+              <h1>Unscheduled:</h1>
+            </hgroup>
+          </header>
+          <ul>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
 <script>
   'use strict';
   var editpad = document.getElementById('editpad');
   editpad.addEventListener('input', function() {
-
+    parse_tasks();
   });
+
+  function get_id(string) {
+    string = string.toLowerCase();
+    string = string.replace(/[\s-+]/g, '_');
+    string = string.replace(/\W/g, '');
+    return string;
+  }
+
+  var tasks;
+  function find_tasks(source) {
+    var task, looking_for_description = true;
+    var task_header = /^task\s+(.+?)(?::(.*))?$/i;
+    var task_completion = /^>>\s*(.*?)\/(.*)$/;
+    var line_pattern = /^.+$/mg;
+
+    tasks = {};
+    for (var line = line_pattern.exec(source);
+         line !== null; line = line_pattern.exec(source)) {
+
+      line = line[0].trim();
+
+      var header = task_header.exec(line);
+      var completion = task_completion.exec(line);
+
+      if (header) {
+        task = {
+          id: get_id(header[1]),
+          title: (header[2] ? header[2].trim() : '') || header[1],
+          description: ''
+        };
+        tasks[task.id] = task;
+        looking_for_description = true;
+        continue;
+      }
+
+      if (completion) {
+        task.completion = {
+          completed: completion[1].trim(),
+          total: completion[2].trim()
+        };
+        looking_for_description = false; 
+        continue;
+      }
+
+      if (looking_for_description) {
+        if (task)
+          task.description += ((task.description ? ' ' : '') + line);
+      }
+
+    }
+    console.dir(tasks);
+  }
+
+  var classification;
+  function classify_tasks(source) {
+    var node_id, looking_for_tasks = false;
+    var node_header = /^(.+?):$/i;
+    var task_header = /^task\s+(.+?)(?::(.*))?$/i;
+    var line_pattern = /^.+$/mg;
+
+    classification = {};
+    for (var line = line_pattern.exec(source);
+         line !== null; line = line_pattern.exec(source)) {
+
+      line = line[0];
+
+      var node_found = node_header.exec(line.replace(/\s*$/, ''));
+      var task_found = task_header.exec(line.trim());
+
+      if (node_found) {
+        node_id = get_id(node_found[1]);
+        if (!classification[node_id])
+          classification[node_id] = {};
+        looking_for_tasks = true;
+        continue;
+      }
+
+      if (looking_for_tasks && task_found) {
+        var task_id = get_id(task_found[1]);
+        if (tasks[task_id])
+          classification[node_id][task_id] = tasks[task_id];
+        continue;
+      }
+
+    }
+    console.dir(classification);
+  }
+
+  function parse_tasks() {
+    var source = document.getElementById('editpad').value;
+    var content = source.split(/^\s*-{2,}\s*$/m);
+    var state = content[0];
+    var definitions = content[1];
+
+    find_tasks(definitions);
+    classify_tasks(state);
+    draw_tasks(classification);
+  }
+
+  function new_task_item(task) {
+    var task_text = 'Task';
+    var html = '<aside><p>'+task_text+' '+task.id+'</p></aside>';
+    html += '<hgroup><h1>'+task.title+'</h1></hgroup>';
+    html += '<p>'+task.description+'</p>';
+    if (task.completion) {
+      var max = parseInt(task.completion.total);
+      var value = parseInt(task.completion.completed) || '0';
+      html += '<progress value="'+value+'" max="'+max+'"></progress>';
+    }
+    var li = document.createElement('li');
+    li.innerHTML = html;
+    li.classList.add('task');
+    return li;
+  }
+
+  function draw_tasks(classification) {
+    for (var node_id in classification) {
+      var ul = document.querySelector('#'+node_id+' ul');
+      if (ul) {
+        ul.innerHTML = '';
+        var tasks = classification[node_id];
+        for (var task_id in tasks) {
+          var task = tasks[task_id];
+          ul.appendChild(new_task_item(task));
+        }
+      }
+    }
+  }
+
+  parse_tasks();
 </script>
 </body>
 </html>
+
 

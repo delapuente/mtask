@@ -1,6 +1,9 @@
+[basic]
+== Mis cosas ==
+
 Unshecheduled:
 
-To Do:
+To do:
   Task 2: Hacer vino caliente
 
 Doing:
