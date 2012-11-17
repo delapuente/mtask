@@ -17,69 +17,72 @@
     }
 
     #editpad {
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
+      box-sizing: border-box;
       background-color: #033;
       color: white;
-      width: 30%;
+      width: 90ex;
+      height: 90%;
       overflow: auto;
-      height: 100%;
-      position: absolute;
-      right:0;
-      top:0;
+      position: fixed;
       bottom:0;
-      padding: .5em;
+      right: 30px;
+      padding: .75em;
       resize: none;
+      border: none;
+      border-radius: 10px 10px 0 0;
+      opacity: 0.95;
+      -moz-transform: translate(0, 90%);
+      -webkit-transform: translate(0, 90%);
+      -moz-transition: -moz-transform .4s ease;
+      -webkit-transition: -webkit-transform .4s ease;
+    }
+
+    #editpad:hover {
+      -moz-transform: translate(0, 0);
+      -webkit-transform: translate(0, 0);
     }
 
     #board {
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
-      display: box;
-      display: -webkit-box;
+      box-sizing: border-box;
+      display: -webkit-flex;
       display: -moz-box;
-      width: 70%;
-      position: absolute;
-      left:0;
-      top:0;
-      bottom:0;
+      display: box;
+      width: 100%;
     }
 
     #board .group {
-      display: box;
-      display: -webkit-box;
+      display: -webkit-flex;
       display: -moz-box;
-      box-pack: justify;
-      box-align: stretch;
-      box-flex: 1;
+      display: box;
       -webkit-box-pack: justify;
       -webkit-box-align: stretch;
       -webkit-box-flex: 1;
       -moz-box-pack: justify;
       -moz-box-align: stretch;
       -moz-box-flex: 1;
-      width: 100%;
-      height: 100%;
+      box-pack: justify;
+      box-align: stretch;
+      box-flex: 1;
     }
 
     #board .group.vertical {
-      box-orient: block-axis;
-      -webkit-box-orient: block-axis;
+      -webkit-flex-direction: column;
       -moz-box-orient: block-axis;
+      box-orient: block-axis;
     }
 
     #board .group.horizontal {
-      box-orient: inline-axis;
-      -webkit-box-orient: inline-axis;
+      -webkit-flex-direction: row;
       -moz-box-orient: inline-axis;
+      box-orient: inline-axis;
     }
 
     #board .group * {
-      box-flex: 1;
-      -wenkit-box-flex: 1;
+      -webkit-box-flex: 1;
       -moz-box-flex: 1;
+      box-flex: 1;
     }
 
     #board section {
@@ -97,17 +100,13 @@
       text-shadow:1px 1px #222;
     }
 
-    .node ul {
-      list-style: none;
-    }
-
-    .node ul li {
-      float: left;
+    .node .task {
+      display: inline-block;
     }
 
     .task {
-      display: block;
-      max-width: 20em;
+      min-width: 10em;
+      max-width: 15em;
       margin: 1em;
       padding: .5em;
       border: 1px solid #FFD440;
@@ -132,7 +131,6 @@
   Task 3: Kanban & Flow themes
 
 Doing:
-  Task 1: Compatibilize layout
   Task 6: Definition parser
   Task 7: Classification parse
   Task 8: Syntax for categories
@@ -142,6 +140,7 @@ Doing:
 
 Done:
   Task 11: Syntax for completion
+  Task 1: Compatibilize layout
 
 Unscheduled:
   Task 4: Kanban & Flow themes
@@ -343,10 +342,10 @@ Think about some syntax to indicate a deadline</textarea>
       var value = parseInt(task.completion.completed) || '0';
       html += '<progress value="'+value+'" max="'+max+'"></progress>';
     }
-    var li = document.createElement('li');
-    li.innerHTML = html;
-    li.classList.add('task');
-    return li;
+    var article = document.createElement('article');
+    article.innerHTML = html;
+    article.classList.add('task');
+    return article;
   }
 
   function draw_tasks(classification) {
