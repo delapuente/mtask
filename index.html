@@ -21,8 +21,8 @@
       box-sizing: border-box;
       background-color: #033;
       color: white;
-      width: 90ex;
       height: 90%;
+      width: 10%;
       overflow: auto;
       position: fixed;
       bottom:0;
@@ -32,15 +32,20 @@
       border: none;
       border-radius: 10px 10px 0 0;
       opacity: 0.95;
-      -moz-transform: translate(0, 90%);
-      -webkit-transform: translate(0, 90%);
-      -moz-transition: -moz-transform .4s ease;
-      -webkit-transition: -webkit-transform .4s ease;
+
+      -moz-transform: translate(0, 95%);
+      -webkit-transform: translate(0, 95%);
+
+      -moz-transition: all .4s ease;
+      -webkit-transition: all .4s ease;
+
+      z-index: 10;
     }
 
     #editpad:hover {
       -moz-transform: translate(0, 0);
       -webkit-transform: translate(0, 0);
+      width: 50%;
     }
 
     #board {
@@ -85,144 +90,242 @@
       box-flex: 1;
     }
 
-    #board section {
+    #board .state {
       border: 1px dashed #EEE;
       padding: 1em;
     }
 
-    #board section:hover {
+    #board .state:hover {
       border: 1px solid #AAA;
     }
 
-    .node aside p {
-      text-align: right;
-      color: #FFE073;
-      text-shadow:1px 1px #222;
-    }
-
-    .node .task {
-      display: inline-block;
-    }
-
     .task {
+      position: relative;
       min-width: 10em;
       max-width: 15em;
       margin: 1em;
       padding: .5em;
       border: 1px solid #FFD440;
       border-radius: 5px;
-      background: #FFE073;
+      background-color: #FFE073;
       box-shadow: 1px 1px 2px #444;
     }
 
-    .node h1 {
+    .task h1 {
       margin-top: .5em;
       margin-bottom: .25em;
+      font-size: large;
     }
 
-    .node progress {
+    .task progress {
       width: 100%;
     }
+
+    .task:hover aside {
+      -moz-transform: translate(0,0);
+      -webkit-transform: translate(0,0);
+      opacity: 1.0;
+    }
+
+    .task aside {
+      position: absolute;
+      top: -moz-calc(100% + 8px);
+      top: -webkit-calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: #444;
+      color: #FFF;
+      padding: .5em;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 1px 1px 2px #444;
+      z-index: 1;
+
+      -moz-transform: translate(0,-50%);
+      -webkit-transform: translate(0,-50%);
+      opacity: 0.0;
+
+      -moz-transition: all ease 0.25s;
+      -webkit-transition: all ease 0.25s;
+    }
+
+    .task aside:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 12px solid #444;
+
+      position: absolute;
+      top: -11px;
+      left: -moz-calc(50% - 12px);
+      left: -webkit-calc(50% - 12px);
+    }
+
+    .task aside progress {
+      -webkit-appearance: none;
+      height: 4px;
+      position: relative;
+      top: -4px;
+    }
+
+    .task aside dl dt {
+      float: left;
+      margin-right: 1ex;
+    }
+
+    .task aside dl dt:after {
+      content: ':';
+    }
+
+    .task aside dl dd {
+      font-weight: bold;
+    }
+
+    .task .id {
+      color: #FFE073;
+      text-shadow:1px 1px #222;
+    }
+
+    .task .category {
+      border: #FFF 1px solid;
+      border-radius: 5px;
+      color: #FFF;
+      padding: .25em;
+      margin-left: .5em;
+    }
+
+    .state .task {
+      display: inline-block;
+    }
+
   </style>
 </head>
 <body>
   <textarea id="editpad" spellcheck="false">To do:
-  Task 2: Flow integrity
-  Task 3: Kanban & Flow themes
+  Task 13: Add task icons
+  Task 15: Default named colors
+  Task 16: Style progress bars
 
 Doing:
-  Task 6: Definition parser
-  Task 7: Classification parse
-  Task 8: Syntax for categories
-  Task 9: Tags
-  Task 10: People assignements
-  Task 12: Due dates
+  Task 14: Syntax for priorities
+  Task 9: Syntax for tags
+  Task 10: Syntax for people assignements
 
 Done:
-  Task 11: Syntax for completion
   Task 1: Compatibilize layout
+  Task 2: Flow integrity
+  Task 6: Definition parser
+  Task 7: Classification parser
+  Task 8: Syntax for categories
+  Task 11: Syntax for completion
+  Task 12: Syntax for due dates
 
 Unscheduled:
-  Task 4: Kanban & Flow themes
+  Task 3: Dynamic kanban
+  Task 4: Dynamic flows
   Task 5: Interactive board
 
 --
 
-Task 1: Compatibilize layout
-Make the layout compatible with Chrome
+Features:
 
-Task 2: Flow integrity
-Ensure you cannot add the same task to more than one step
+  Task 1: Compatibilize layout
+  Make the layout compatible with Chrome
 
-Task 3: Kanban & Flow themes
-Make kanban layout dynamic and based on themes
+  Task 2: Flow integrity
+  Ensure you cannot add the same task to more than one step
 
-Task 4: Kanban & Flow themes
-Make flow transitions dynamic and based on themes
+  Task 5: Interactive board
+  Allow the user to use the board view to move tasks from one step to another
 
-Task 5: Interactive board
-Allow the user to use the board view to move tasks from one step to another
+  Task 13: Add task icons
+  Icons to indicate completion and due date
 
-Task 6: Definition parser
-Implement the parser for definitions
+  Task 15: Default named colors
+  Add some named colors instead of #rgb colors
 
-Task 7: Classification parse
-Implement the parser for classification of tasks
+  Task 16: Style progress bars
+  Add CSS to style progress bar for completion
 
-Task 8: Syntax for categories
-Think about some syntax to present categories
+Kanban & Flow themes (#FF8C34):
 
-Task 9: Tags
-Think about some syntax to tag taskes
+  Task 3: Dynamic kanban
+  Make kanban layout dynamic and based on themes
 
-Task 10: People assignements
-Think about some syntax to indicate people assignements
+  Task 4: Dynamic flows
+  Make flow transitions dynamic and based on themes
 
-Task 11: Syntax for completion
-Think about some syntax to indicate completion
+Parsers (#F71BBA):
 
-Task 12: Due dates
-Think about some syntax to indicate a deadline</textarea>
+  Task 6: Definition parser
+  Implement the parser for definitions
+
+  Task 7: Classification parser
+  Implement the parser for classification of tasks
+
+Syntax (#30E266):
+
+  Task 8: Syntax for categories
+  Think about some syntax to present categories
+
+  Task 9: Syntax for tags
+  Think about some syntax to tag tasks
+  >> 1h/4h (01/2014)
+
+  Task 10: Syntax for people assignements
+  Think about some syntax to indicate people assignements
+  >> 1h/4h (01/2014)
+
+  Task 11: Syntax for completion
+  Think about some syntax to indicate completion
+
+  Task 12: Syntax for due dates
+  Think about some syntax to indicate a deadline
+
+  Task 14: Syntax for priorities
+  Think about a syntax for priorities
+  >> 1h/4h (01/2014)</textarea>
   <section id="board">
     <div class="group vertical">
       <div class="group horizontal">
-        <section id="to_do" class="node">
+        <section id="to_do" class="state">
           <header>
             <hgroup>
               <h1>To do:</h1>
             </hgroup>
           </header>
-          <ul>
-          </ul>
+          <section>
+          </section>
         </section>
-        <section id="doing" class="node">
+        <section id="doing" class="state">
           <header>
             <hgroup>
               <h1>Doing:</h1>
             </hgroup>
           </header>
-          <ul>
-          </ul>
+          <section>
+          </section>
         </section>
-        <section id="done" class="node">
+        <section id="done" class="state">
           <header>
             <hgroup>
               <h1>Done:</h1>
             </hgroup>
           </header>
-          <ul>
-          </ul>
+          <section>
+          </section>
         </section>
       </div>
       <div class="group horizontal">
-        <section id="unscheduled" class="node">
+        <section id="unscheduled" class="state">
           <header>
             <hgroup>
               <h1>Unscheduled:</h1>
             </hgroup>
           </header>
-          <ul>
-          </ul>
+          <section>
+          </section>
         </section>
       </div>
     </div>
@@ -230,139 +333,301 @@ Think about some syntax to indicate a deadline</textarea>
 <script>
   'use strict';
   var editpad = document.getElementById('editpad');
-  editpad.addEventListener('input', function() {
-    parse_tasks();
-  });
+  function parse_and_draw() {
+    parse_source(editpad.value);
+    draw_tasks(tasks);
+  }
+  editpad.addEventListener('input', parse_and_draw);
+
+  /**
+   * From http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+   * Converts an RGB color value to HSL. Conversion formula
+   * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
+   * Assumes r, g, and b are contained in the set [0, 255] and
+   * returns h, s, and l in the set [0, 1].
+   *
+   * @param   Number  r       The red color value
+   * @param   Number  g       The green color value
+   * @param   Number  b       The blue color value
+   * @return  Array           The HSL representation
+   */
+  function rgbToHsl(r, g, b){
+      r /= 255, g /= 255, b /= 255;
+      var max = Math.max(r, g, b), min = Math.min(r, g, b);
+      var h, s, l = (max + min) / 2;
+
+      if(max === min){
+          h = s = 0; // achromatic
+      }
+      else {
+          var d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch(max){
+              case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+              case g: h = (b - r) / d + 2; break;
+              case b: h = (r - g) / d + 4; break;
+          }
+          h /= 6;
+      }
+
+      return [h, s, l];
+  }
+
+  var DEFAULT_TASK_COLOR = '#FFE073';
+
+  // From http://24ways.org/2010/calculating-color-contrast
+  function get_contrast_YIQ(hexcolor){
+    var r = parseInt(hexcolor.substr(1,2),16);
+    var g = parseInt(hexcolor.substr(3,2),16);
+    var b = parseInt(hexcolor.substr(5,2),16);
+    var yiq = ((r*299)+(g*587)+(b*114))/1000;
+    return (yiq >= 128) ? '#000000' : '#FFFFFF';
+  }
+
+  function hexToRgb(hexcolor) {
+    // malformed color
+    if (hexcolor[0] !== '#'
+        || (hexcolor.length !== 4 && hexcolor.length !== 7))
+
+      hexcolor = DEFAULT_TASK_COLOR;
+
+
+    // normalize color
+    if (hexcolor.length === '4')
+      hexcolor = '#'
+                 + hexcolor[1] + hexcolor[1]
+                 + hexcolor[2] + hexcolor[2]
+                 + hexcolor[3] + hexcolor[3];
+
+    // calculate RGB values
+    return [
+      parseInt(hexcolor.substr(1,2), 16),
+      parseInt(hexcolor.substr(3,2), 16),
+      parseInt(hexcolor.substr(5,2), 16)
+    ];
+  }
 
   function get_id(string) {
+    string = string.trim();
     string = string.toLowerCase();
     string = string.replace(/[\s-+]/g, '_');
     string = string.replace(/\W/g, '');
     return string;
   }
 
-  var tasks;
-  function find_tasks(source) {
-    var task, looking_for_description = true;
-    var task_header = /^task\s+(.+?)(?::(.*))?$/i;
-    var task_completion = /^>>\s*(.*?)\/(.*)$/;
-    var line_pattern = /^.+$/mg;
-
-    tasks = {};
-    for (var line = line_pattern.exec(source);
-         line !== null; line = line_pattern.exec(source)) {
-
-      line = line[0].trim();
-
-      var header = task_header.exec(line);
-      var completion = task_completion.exec(line);
-
-      if (header) {
-        task = {
-          id: get_id(header[1]),
-          title: (header[2] ? header[2].trim() : '') || header[1],
-          description: ''
-        };
-        tasks[task.id] = task;
-        looking_for_description = true;
-        continue;
-      }
-
-      if (completion) {
-        task.completion = {
-          completed: completion[1].trim(),
-          total: completion[2].trim()
-        };
-        looking_for_description = false; 
-        continue;
-      }
-
-      if (looking_for_description) {
-        if (task)
-          task.description += ((task.description ? ' ' : '') + line);
-      }
-
-    }
-    console.dir(tasks);
+  function wrap_hsl(components) {
+    return 'hsl('+Math.round(components[0]*360)+','
+                 +Math.round(components[1]*100)+'%,'
+                 +Math.round(components[2]*100)+'%)';
   }
 
-  var classification;
-  function classify_tasks(source) {
-    var node_id, looking_for_tasks = false;
-    var node_header = /^(.+?):$/i;
-    var task_header = /^task\s+(.+?)(?::(.*))?$/i;
-    var line_pattern = /^.+$/mg;
+  function get_color_scheme(hexcolor) {
+    var base, text, border;
+    base = rgbToHsl.apply(null, hexToRgb(hexcolor));
+    text = get_contrast_YIQ(hexcolor);
+    border = [base[0], base[1], base[2] * 0.75];
+    return {
+      'background-color': wrap_hsl(base),
+      'color': text,
+      'border-color': wrap_hsl(border)
+    };
+  };
 
-    classification = {};
+  function new_task_item(task) {
+    var task_text = 'Task';
+    var category_text = 'Category';
+    var completion_text = 'Completion';
+    var due_text = 'Due date';
+
+    var html = '<hgroup><h1>'+task.title+'</h1></hgroup>';
+    if (task.description)
+      html += '<p>'+task.description+'</p>';
+    html += '<aside class="details"><dl>';
+
+    html += '<dt>'+task_text+'</dt>';
+    html += '<dd>'+task.id+'</dd>';
+
+    if (task.category) {
+      html += '<dt>'+category_text+'</dt>';
+      html += '<dd>'+categories[task.category].name+'</dd>';
+    }
+
+    if (task.completion) {
+      var max = parseInt(task.completion.total);
+      var value = parseInt(task.completion.completed) || '0';
+      html += '<dt>'+completion_text+'</dt>';
+      html += '<dd><progress value="'+value+'" max="'+max+'"></progress></dd>';
+    }
+
+    if (task.completion && task.completion.due) {
+      var max = parseInt(task.completion.total);
+      var value = parseInt(task.completion.completed) || '0';
+      html += '<dt>'+due_text+'</dt>';
+      html += '<dd>'+task.completion.due+'</dd>';
+    }
+
+    html += '</dl>';
+
+    var article = document.createElement('article');
+    article.innerHTML = html;
+    article.classList.add('task');
+    if (task.category) {
+      var color = categories[task.category].color;
+      var color_scheme = get_color_scheme(color);
+      article.style.backgroundColor = color_scheme['background-color'];
+      article.style.borderColor = color_scheme['border-color'];
+      article.style.color = color_scheme['color'];
+    }
+    return article;
+  }
+
+  function draw_tasks(tasks) {
+    // Clear states
+    var tasks_containers = document.querySelectorAll('.state section');
+    [].forEach.call(tasks_containers, function (container) {
+      container.innerHTML = '';
+    });
+
+    // Draw each task where it belongs to
+    for (var task_id in tasks) {
+      var task = tasks[task_id];
+      var state_id = task.state;
+      if (state_id) {
+        var container = document.querySelector('#'+state_id+' section');
+        container.appendChild(new_task_item(task));
+      }
+    }
+  }
+
+  var tasks, states, categories;
+  function parse_source(source) {
+    tasks = {}, states = {}, categories = {};
+
+    var task, looking_for_description = true;
+    var state_header = /^(.+?):$/i;
+    var category_header = /^(.+?)(?:\s+\(\s*(.*?)\s*\)\s*)?:$/i;
+    var task_header = /^task\s+(.+?)(?::\s*(.*))?$/i;
+    var task_completion = /^>>\s*(.*?)(?:\/(.*?))?\s*(?:\((.*?)\))?$/;
+    var separator = /^-{2,}$/;
+    var line_pattern = /^.+$/mg;
+    var mode = 'state';
+
+    var current_task, current_state, current_category;
+    var parsing_task = false, starting_description = false;
     for (var line = line_pattern.exec(source);
          line !== null; line = line_pattern.exec(source)) {
 
       line = line[0];
+      var trimmed = line.trim();
 
-      var node_found = node_header.exec(line.replace(/\s*$/, ''));
-      var task_found = task_header.exec(line.trim());
-
-      if (node_found) {
-        node_id = get_id(node_found[1]);
-        if (!classification[node_id])
-          classification[node_id] = {};
-        looking_for_tasks = true;
+      // Separator found, now looking for classification
+      var separator_found = separator.exec(trimmed);
+      if (separator_found && mode === 'state') {
+        parsing_task = false;
+        current_state = undefined;
+        mode = 'classification';
         continue;
       }
 
-      if (looking_for_tasks && task_found) {
-        var task_id = get_id(task_found[1]);
-        if (tasks[task_id])
-          classification[node_id][task_id] = tasks[task_id];
+      // Looking for a task definition
+      var task_found = task_header.exec(trimmed);
+      if (task_found) {
+        parsing_task = true;
+        starting_description = true;
+        current_task = get_id(task_found[1]);
+
+        // not already defined, create new
+        if (!tasks[current_task]) {
+          tasks[current_task] = {
+            id: current_task,
+            title: task_found[2] || task_found[1],
+            category: current_category,
+            state: current_state
+          };
+        }
+
+        // already defined, expand it
+        else {
+          if (task_found[2])
+            tasks[current_task].title = task_found[2];
+          if (current_category)
+            tasks[current_task].category = current_category;
+          if (current_state)
+            tasks[current_task].state = current_state;
+        }
+
         continue;
       }
 
-    }
-    console.dir(classification);
-  }
-
-  function parse_tasks() {
-    var source = document.getElementById('editpad').value;
-    var content = source.split(/^\s*-{2,}\s*$/m);
-    var state = content[0];
-    var definitions = content[1];
-
-    find_tasks(definitions);
-    classify_tasks(state);
-    draw_tasks(classification);
-  }
-
-  function new_task_item(task) {
-    var task_text = 'Task';
-    var html = '<aside><p>'+task_text+' '+task.id+'</p></aside>';
-    html += '<hgroup><h1>'+task.title+'</h1></hgroup>';
-    html += '<p>'+task.description+'</p>';
-    if (task.completion) {
-      var max = parseInt(task.completion.total);
-      var value = parseInt(task.completion.completed) || '0';
-      html += '<progress value="'+value+'" max="'+max+'"></progress>';
-    }
-    var article = document.createElement('article');
-    article.innerHTML = html;
-    article.classList.add('task');
-    return article;
-  }
-
-  function draw_tasks(classification) {
-    for (var node_id in classification) {
-      var ul = document.querySelector('#'+node_id+' ul');
-      if (ul) {
-        ul.innerHTML = '';
-        var tasks = classification[node_id];
-        for (var task_id in tasks) {
-          var task = tasks[task_id];
-          ul.appendChild(new_task_item(task));
+      // Looking for task completion
+      if (parsing_task) {
+        var completion_found = task_completion.exec(trimmed);
+        if (completion_found) {
+          parsing_task = false;
+          tasks[current_task].completion = {
+            completed: completion_found[2] ? completion_found[1] : undefined,
+            total: completion_found[2] || completion_found[1],
+            due: completion_found[3] || undefined
+          };
+          continue;
         }
       }
+
+      var rtrimmed = line.replace(/\s*$/, '');
+
+      // The State is the set of tasks distributed among the different states
+      if (mode === 'state') {
+        // New state found, tasks found since now are in this state
+        var state_found = state_header.exec(rtrimmed);
+        if (state_found) {
+          parsing_task = false;
+          current_state = get_id(state_found[1]);
+          states[current_state] = {
+            id: current_state,
+            name: state_found[1]
+          };
+          continue;
+        }
+      }
+
+      // The Classification is a space where to distribute tasks among
+      // categories
+      else if (mode === 'classification') {
+        // New category found, tasks found since now belong to this category
+        var category_found = category_header.exec(rtrimmed);
+        if (category_found) {
+          parsing_task = false;
+          current_category = get_id(category_found[1]);
+          categories[current_category] = {
+            id: current_category,
+            name: category_found[1],
+            color: category_found[2] || DEFAULT_TASK_COLOR
+          };
+          continue;
+        }
+      }
+
+      // Any remaining patter is ignored or added as description if we are
+      // parsing a task
+      if (parsing_task) {
+
+        // if no description or recently started recognizing description
+        if (!tasks[current_task].description || starting_description) {
+          tasks[current_task].description = trimmed;
+          starting_description = false;
+        }
+
+        else
+          tasks[current_task].description += ' '+trimmed;
+
+        continue;
+      }
     }
+
+    console.dir(tasks);
   }
 
-  parse_tasks();
+  parse_and_draw();
 </script>
 </body>
 </html>
