@@ -16,36 +16,83 @@
       margin-bottom: .5em;
     }
 
-    #editpad {
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      background-color: #033;
-      color: white;
-      height: 90%;
-      width: 10%;
-      overflow: auto;
+    .tool-overlay {
       position: fixed;
-      bottom:0;
-      right: 30px;
-      padding: .75em;
-      resize: none;
-      border: none;
-      border-radius: 10px 10px 0 0;
-      opacity: 0.95;
-
-      -moz-transform: translate(0, 95%);
-      -webkit-transform: translate(0, 95%);
-
-      -moz-transition: all .4s ease;
-      -webkit-transition: all .4s ease;
-
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 0;
+      text-align: right;
+      pointer-events: none;
       z-index: 10;
     }
 
-    #editpad:hover {
+    .tool-overlay:before {
+      content: "";
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .tools {
+      height: 90%;
+      display: inline-block;
+      vertical-align: middle;
+      pointer-events: auto;
+      -moz-transform: translate(-moz-calc(100% - 30px), 0);
+      -webkit-transform: translate(-webkit-calc(100% - 30px), 0);
+      -moz-transition: all .4s ease;
+      -webkit-transition: all .4s ease;
+      border: 2px solid gray;
+      border-right: none;
+      font-size: 10pt;
+      background-color: white;
+    }
+
+    .tools:hover {
       -moz-transform: translate(0, 0);
       -webkit-transform: translate(0, 0);
-      width: 50%;
+      opacity: .95;
+    }
+
+     #toolbar:before {
+      content: "";
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+     }
+
+    #toolbar {
+      width: 30px;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    #editpad {
+      text-align: left;
+      font-family: monospace;
+      overflow: auto;
+      width: 80ex;
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+
+      border: none;
+      padding: .5em;
+    }
+
+  #editpad.modified {
+    box-shadow: inset 0 0 2px 2px #33CDC7;
+  }
+
+    #editpad:focus {
+      border: none;
     }
 
     #board {
@@ -93,10 +140,6 @@
     #board .state {
       border: 1px dashed #EEE;
       padding: 1em;
-    }
-
-    #board .state:hover {
-      border: 1px solid #AAA;
     }
 
     .task {
@@ -202,7 +245,12 @@
   </style>
 </head>
 <body>
-  <textarea id="editpad" spellcheck="false">To do:
+  <section class="tool-overlay">
+    <section class="tools">
+      <section id="toolbar">
+        ◀
+      </section>
+      <textarea contenteditable id="editpad">To do:
   Task 13: Add task icons
   Task 15: Default named colors
   Task 16: Style progress bars
@@ -286,6 +334,8 @@ Syntax (#30E266):
   Task 14: Syntax for priorities
   Think about a syntax for priorities
   >> 1h/4h (01/2014)</textarea>
+    </section>
+  </section>
   <section id="board">
     <div class="group vertical">
       <div class="group horizontal">
@@ -337,6 +387,17 @@ Syntax (#30E266):
     parse_source(editpad.value);
     draw_tasks(tasks);
   }
+
+  var timeToSave = 0;
+  editpad.addEventListener('input', function (evt) {
+    editpad.classList.add('modified');
+    clearTimeout(timeToSave);
+    timeToSave = setTimeout(function save() {
+      localStorage['text'] = editpad.value;
+      editpad.classList.remove('modified');
+    }, 1000);
+  });
+
   editpad.addEventListener('input', parse_and_draw);
 
   /**
@@ -471,6 +532,7 @@ Syntax (#30E266):
     var article = document.createElement('article');
     article.innerHTML = html;
     article.classList.add('task');
+    article.setAttribute('contenteditable', 'false');
     if (task.category) {
       var color = categories[task.category].color;
       var color_scheme = get_color_scheme(color);
@@ -626,6 +688,10 @@ Syntax (#30E266):
 
     console.dir(tasks);
   }
+
+  var localText = localStorage['text'];
+  if (localText)
+    editpad.value = localText;
 
   parse_and_draw();
 </script>
