@@ -83,6 +83,8 @@ To do:
   https://github.com/lodr/mtask
   >> 1/5
 ```
+Trick: you can add units to your completions. I.e: `1h/5h` but, at the moment, it does not support fractions, you can
+not say `1.5h/5h`. Note μTask does not understand what `h` means (yet). It just ignore it xP.
 
 **Task with description, details, completion and a deadline**
 ```
@@ -94,19 +96,22 @@ To do:
   >> 1/5 (2013/12/31)
 ```
 
-**Only a deadline and a title**
+**Only a deadline and a description**
 ```
 To do:
   Task 1: Read the μTask documentation
   >> (2013/12/31)
 ```
 
+Note description, details, completion and deadline are optional in any combination.
+
 ### Updating a task
 
 You can write tasks more than once, any time you use the same name, you are updating an existing task.
 
 ```
-Task 1
+To do:
+  Task 1
 ```
 
 Your task has only a name. Write this after:
@@ -120,13 +125,17 @@ Now your task has a description and details.
 
 ### The kanban
 
-It is not enough to describe the task, you have to put them on states. At current time, states are fixed:
+The [kanban](http://en.wikipedia.org/wiki/Kanban) is the board where I stick my post-its. So it is the place
+where your tasks will end.
+
+If you want to see your task rendered, it is not enough to describe it, you have to put them inside some state.
+At current time, states are fixed:
 * `To do`: things that remain undone
 * `Doing`: things in progress
 * `Done`: things you finished
-* `Unshecduled`: things you think about but are not mandatory
+* `Unshecduled`: things you think about but they are not mandatory
 
-To put a task into an state you write one the former names of the states, followed by two dots `:` and then the tasks
+To put a task into a state you write one the former names of the states, followed by two dots `:` and then the tasks
 which are in this state.
 
 ```
@@ -234,7 +243,7 @@ Areas (#F71BBA):
   Task 3: Read "The kanban" section
   Keep your kanban as simple as possible. Task there should
   only have the name and description at most. Remember you
-  can use any text as names. If you choose shor names instead
+  can use any text as names. If you choose short names instead
   of numbers you could omit the description as well.
   >> 3/3
 
@@ -244,3 +253,5 @@ Areas (#F71BBA):
   in different states while you complete them.
   >> 3/3
 ```
+
+That is all by now. More features are coming. Please, use it and give me feedback ;)
