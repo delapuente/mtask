@@ -47,43 +47,54 @@ is used as a placeholder so you can replace with any text you want.
 
 ### Practical examples:
 
+Paste these examples into the notepad to see the results
+
 **Task with name**
 ```
-Task 1
+To do:
+  Task tutorial
 ```
 
 **Task with description**
 ```
-Task 1: Read the μTask documentation
+To do:
+  Task tutorial: Read the μTask documentation
 ```
 
 **Task with description and details**
 ```
-Task 1: Read the μTask documentation
-Start with Syntax section and see some examples
-in the following sections.
+To do:
+  Task tutorial: Read the μTask documentation
+  Start with Syntax section and see some examples
+  in the following sections. URL:
+  https://github.com/lodr/mtask
 ```
 
 **Task with description, details & completion**
 ```
-Task 1: Read the μTask documentation
-Start with Syntax section and see some examples
-in the following sections.
->> 1/5
+To do:
+  Task 1: Read the μTask documentation
+  Start with Syntax section and see some examples
+  in the following sections. URL:
+  https://github.com/lodr/mtask
+  >> 1/5
 ```
 
 **Task with description, details, completion and a deadline**
 ```
-Task 1: Read the μTask documentation
-Start with Syntax section and see some examples
-in the following sections.
->> 1/5 (2013/12/31)
+To do:
+  Task 1: Read the μTask documentation
+  Start with Syntax section and see some examples
+  in the following sections. URL:
+  https://github.com/lodr/mtask
+  >> 1/5 (2013/12/31)
 ```
 
 **Only a deadline and a title**
 ```
-Task 1: Read the μTask documentation
->> (2013/12/31)
+To do:
+  Task 1: Read the μTask documentation
+  >> (2013/12/31)
 ```
 
 ### Updating a task
