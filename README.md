@@ -15,163 +15,54 @@ the first time you visit the demo.
 
 ## Syntax
 
-### The kanban
-
-In order to start, you need at least the categories and currently they are fixed:
-* `To do:` things you should start doing in short
-* `Doing:` things you are currently doing
-* `Done:` things you have finished
-* `Unscheduled:` things you think about but are not mandatory
-
-An empty document is something like this:
+Write tasks is quite simple, this is the skeleton of a complete task:
 
 ```
-To do:
+Task <here the name>[: <here the description>]
+[<Here the details, >]
+[<you can break lines if you want.>]
+[>> [[<completed>/]<total>] [(<year>/<month>/<day>)]
+```
+Does it seem weird? Just remember, text between square brackets `[` and `]` is optional and text between `<` and `>`
+is used as a placeholder so you can replace with any text you want.
 
-Doing:
+### Practical examples:
 
-Done:
-
-Unscheduled:
+**Task with name**
+```
+Task 1
 ```
 
-Optionally you have an area to further describe and categorize your task. You can add this area by using a double dash
-`--`:
-
+**Task with description**
 ```
-Tasks go here to be rendered!
-
-To do:
-
-Doing:
-
-Done:
-
-Unscheduled:
-
---
-
-Taks descriptions and categorization fit here!
+Task 1: Read the μTask documentation
 ```
 
-### Simplest tasks
-
-A task starts with the word `Task` followed by an identifier. The identifier could be any sequence of characters.
-
-Yo would need the identifier if you want to refer to the task later but, despite I recommend numbers or short words,
-you are not restricted about the nature of the identifiers.
-
-You can write tasks in the kanban area (before the dashes) or in the description area (after the dashes) but they
-won't be rendered unless you put under one **state in the kanban**.
-
-All these are valid tasks:
-
+**Task with description and details**
 ```
-To do:
-  Task 1
-  Task shortTask
-  
-Doing:
-  Task A long task
-  Task MY TASK
+Task 1: Read the μTask documentation
+Start with Syntax section and see some examples
+in the following sections.
 ```
 
-### Titles
-
-If you use numbers as identifiers, you would want to add a real title, you can use this syntax instead:
-
+**Task with description, details & completion**
 ```
-To do:
-  Task 1: clean up the living room
-  Task shortTask: call mummy
-
-Doing:
-  Task A long task: write that awesome DSL parser
-  Task MY TASK: buy some chocolat
+Task 1: Read the μTask documentation
+Start with Syntax section and see some examples
+in the following sections.
+>> 1/5
 ```
 
-### Descriptions
-
-Probably you want to add detailed descriptions about one taks. To do this, only add the description just in
-the line next to the title:
-
+**Task with description, details, completion and a deadline**
 ```
-Doing:
-  Task A long task: write that awesome DSL parser
-  This is a description for the long task. You can split
-  the explanation in several lines.
-  
-  Task MY TASK: buy some chocolat
-  This task has a description as well.
+Task 1: Read the μTask documentation
+Start with Syntax section and see some examples
+in the following sections.
+>> 1/5 (2013/12/31)
 ```
 
-Anyway, my recommendation is:
-* Use the **description area** to detail your taks
-* In the **kanban area**, refer to tasks only by their identifiers 
-
+**Only a deadline and a title**
 ```
-To do:
-  Task 1
-  Task shortTask
-  
-Doing:
-  Task A long task
-  Task MY TASK
-  
---
-Task A long task: write that awesome DSL parser
-This is a description for the long task. You can split
-
-Task MY TASK: buy some chocolat
-This task has a description as well.
+Task 1: Read the μTask documentation
+>> (2013/12/31)
 ```
-
-### Categorization
-
-In the description area, you can add **categories**. To add a category simply use an arbitrary name followed by `:`
-and add tasks below.
-
-```
-To do:
-  Task 1
-  Task shortTask
-  
-Doing:
-  Task A long task
-  Task MY TASK
-  
---
-Programming:
-  Task A long task: write that awesome DSL parser
-  This is a description for the long task. You can split
-
-Buying:
-  Task MY TASK: buy some chocolat
-  This task has a description as well.
-```
-
-All tasks under a category belong to that category. If you want some tasks to remain uncategorized, leave them
-before the first category.
-
-If you want to colour tasks by category, point the color in brackets with a hexadecimal code like `#FF0000`:
-
-```
-To do:
-  Task 1
-  Task shortTask
-  
-Doing:
-  Task A long task
-  Task MY TASK
-  
---
-Programming (#FF0000):
-  Task A long task: write that awesome DSL parser
-  This is a description for the long task. You can split
-
-Buying (#00FF00):
-  Task MY TASK: buy some chocolat
-  This task has a description as well.
-```
-
-Uncategorized tasks have default color __yellow__.
