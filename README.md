@@ -47,13 +47,17 @@ is used as a placeholder so you can replace with any text you want.
 
 ### Practical examples:
 
-Paste these examples into the notepad to see the results
+Paste these examples into the notepad (pass over the right area, that with the arrow, to reveal the notepad)
+to see the results:
 
 **Task with name**
 ```
 To do:
   Task tutorial
 ```
+
+Note we are putting the `Task tutorial` inside the state `To do`. You will read more about this in the next section.
+If you want your task to be displayed you need to put it in some state.
 
 **Task with description**
 ```
