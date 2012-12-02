@@ -571,16 +571,21 @@ Syntax (#30E266):
     var task_header = /^task\s+(.+?)(?::\s*(.*))?$/i;
     var task_completion = /^>>\s*(.*?)(?:\/(.*?))?\s*(?:\((.*?)\))?$/;
     var separator = /^-{2,}$/;
-    var line_pattern = /^.+$/mg;
     var mode = 'state';
+
+    var lines = source.split('\n');
 
     var current_task, current_state, current_category;
     var parsing_task = false, starting_description = false;
-    for (var line = line_pattern.exec(source);
-         line !== null; line = line_pattern.exec(source)) {
+    for (var i=0, len=lines.length; i<len; i++) {
 
-      line = line[0];
+      var line = lines[i];
       var trimmed = line.trim();
+
+      if (!trimmed) {
+        parsing_task = false;
+        continue;
+      }
 
       // Separator found, now looking for classification
       var separator_found = separator.exec(trimmed);
@@ -641,8 +646,7 @@ Syntax (#30E266):
       if (mode === 'state') {
         // New state found, tasks found since now are in this state
         var state_found = state_header.exec(rtrimmed);
-        if (state_found) {
-          parsing_task = false;
+        if (state_found && !parsing_task) {
           current_state = get_id(state_found[1]);
           states[current_state] = {
             id: current_state,
@@ -657,8 +661,7 @@ Syntax (#30E266):
       else if (mode === 'classification') {
         // New category found, tasks found since now belong to this category
         var category_found = category_header.exec(rtrimmed);
-        if (category_found) {
-          parsing_task = false;
+        if (category_found && !parsing_task) {
           current_category = get_id(category_found[1]);
           categories[current_category] = {
             id: current_category,
