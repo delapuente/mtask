@@ -2,7 +2,7 @@
 
 `/microTask/` is a simple application to remember the tasks your are doing.
 
-In μTask you have an editor when you type plain text with a special syntax and
+In μTask you have an editor where you type plain text with a special syntax and
 the application renders it to give you visual feedback about the state of your
 tasks.
 
@@ -11,7 +11,7 @@ This is only a concept version but you can try and give me feedback ;)
 The current state of the project is indeed the example you can find if it is
 the first time you visit the demo.
 
-[Try μTask it now](http://lodr.github.com/mtask)!
+[Try μTask now](http://lodr.github.com/mtask)!
 
 ## Why to use it?
 
