@@ -40,10 +40,12 @@
       display: inline-block;
       vertical-align: middle;
       pointer-events: auto;
+      -webkit-transform: translate(91ex, 0);
       -moz-transform: translate(-moz-calc(100% - 30px), 0);
-      -webkit-transform: translate(-webkit-calc(100% - 30px), 0);
-      -moz-transition: all .4s ease;
+      transform: translate(calc(100% - 30px), 0);
       -webkit-transition: all .4s ease;
+      -moz-transition: all .4s ease;
+      transition: all .4s ease;
       border: 2px solid gray;
       border-right: none;
       font-size: 10pt;
@@ -51,8 +53,9 @@
     }
 
     .tools:hover {
-      -moz-transform: translate(0, 0);
       -webkit-transform: translate(0, 0);
+      -moz-transform: translate(0, 0);
+      transform: translate(0, 0);
       opacity: .95;
     }
 

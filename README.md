@@ -125,7 +125,7 @@ Now your task has a description and details.
 
 ### The kanban
 
-The [kanban](http://en.wikipedia.org/wiki/Kanban) is the board where I stick my post-its. So it is the place
+The [kanban board](http://en.wikipedia.org/wiki/Kanban_board) is the board where I stick my post-its. So it is the place
 where your tasks will end.
 
 If you want to see your task rendered, it is not enough to describe it, you have to put them inside some state.
