@@ -1,0 +1,241 @@
+* { margin: 0; padding: 0; }
+
+html {
+  font-family: Arial;
+  font-size: 10pt;
+  height: 100%;
+}
+
+p {
+  margin-bottom: .5em;
+}
+
+.tool-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 0;
+  text-align: right;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tool-overlay:before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tools {
+  height: 90%;
+  display: inline-block;
+  vertical-align: middle;
+  pointer-events: auto;
+  -webkit-transform: translate(91ex, 0);
+  -moz-transform: translate(-moz-calc(100% - 30px), 0);
+  transform: translate(calc(100% - 30px), 0);
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  transition: all .4s ease;
+  border: 2px solid gray;
+  border-right: none;
+  font-size: 10pt;
+  background-color: white;
+}
+
+.tools:hover {
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  transform: translate(0, 0);
+  opacity: .95;
+}
+
+ #toolbar:before {
+  content: "";
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+ }
+
+#toolbar {
+  width: 30px;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#editpad {
+  text-align: left;
+  font-family: monospace;
+  overflow: auto;
+  width: 80ex;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  border: none;
+  padding: .5em;
+}
+
+#editpad.modified {
+box-shadow: inset 0 0 2px 2px #33CDC7;
+}
+
+#editpad:focus {
+  border: none;
+}
+
+#board {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: box;
+  width: 100%;
+}
+
+#board .group {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: box;
+  -webkit-box-pack: justify;
+  -webkit-box-align: stretch;
+  -webkit-box-flex: 1;
+  -moz-box-pack: justify;
+  -moz-box-align: stretch;
+  -moz-box-flex: 1;
+  box-pack: justify;
+  box-align: stretch;
+  box-flex: 1;
+}
+
+#board .group.vertical {
+  -webkit-flex-direction: column;
+  -moz-box-orient: block-axis;
+  box-orient: block-axis;
+}
+
+#board .group.horizontal {
+  -webkit-flex-direction: row;
+  -moz-box-orient: inline-axis;
+  box-orient: inline-axis;
+}
+
+#board .group * {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+}
+
+#board .state {
+  border: 1px dashed #EEE;
+  padding: 1em;
+}
+
+.task {
+  position: relative;
+  min-width: 10em;
+  max-width: 15em;
+  margin: 1em;
+  padding: .5em;
+  border: 1px solid #FFD440;
+  border-radius: 5px;
+  background-color: #FFE073;
+  box-shadow: 1px 1px 2px #444;
+}
+
+.task h1 {
+  margin-top: .5em;
+  margin-bottom: .25em;
+  font-size: large;
+}
+
+.task progress {
+  width: 100%;
+}
+
+.task:hover aside {
+  -moz-transform: translate(0,0);
+  -webkit-transform: translate(0,0);
+  opacity: 1.0;
+}
+
+.task aside {
+  position: absolute;
+  top: -moz-calc(100% + 8px);
+  top: -webkit-calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #444;
+  color: #FFF;
+  padding: .5em;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 1px 1px 2px #444;
+  z-index: 1;
+
+  -moz-transform: translate(0,-50%);
+  -webkit-transform: translate(0,-50%);
+  opacity: 0.0;
+
+  -moz-transition: all ease 0.25s;
+  -webkit-transition: all ease 0.25s;
+}
+
+.task aside:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #444;
+
+  position: absolute;
+  top: -11px;
+  left: -moz-calc(50% - 12px);
+  left: -webkit-calc(50% - 12px);
+}
+
+.task aside progress {
+  -webkit-appearance: none;
+  height: 4px;
+  position: relative;
+  top: -4px;
+}
+
+.task aside dl dt {
+  float: left;
+  margin-right: 1ex;
+}
+
+.task aside dl dt:after {
+  content: ':';
+}
+
+.task aside dl dd {
+  font-weight: bold;
+}
+
+.task .id {
+  color: #FFE073;
+  text-shadow:1px 1px #222;
+}
+
+.task .category {
+  border: #FFF 1px solid;
+  border-radius: 5px;
+  color: #FFF;
+  padding: .25em;
+  margin-left: .5em;
+}
+
+.state .task {
+  display: inline-block;
+}
+
