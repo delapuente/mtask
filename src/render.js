@@ -129,7 +129,7 @@ var Render = (function (undefined) {
     article.classList.add('task');
     article.setAttribute('contenteditable', 'false');
     if (task.category) {
-      var color = categories[task.category].color;
+      var color = categories[task.category].color || DEFAULT_TASK_COLOR;
       var color_scheme = get_color_scheme(color);
       article.style.backgroundColor = color_scheme['background-color'];
       article.style.borderColor = color_scheme['border-color'];
