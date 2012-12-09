@@ -23,7 +23,7 @@ var Parser = (function (undefined) {
 
     var state_header = /^(.+?):$/i;
     var category_header = /^(.+?)(?:\s+\(\s*(.*?)\s*\)\s*)?:$/i;
-    var task_header = /^task\s+(.+?)(?::\s*(.*))?$/i;
+    var task_header = /^\#\s+(.+?)(?::\s*(.*))?$/i;
     var task_completion = /^>>\s*(.*?)(?:\/(.*?))?\s*(?:\((.*?)\))?$/;
     var separator = /^-{2,}$/;
     var mode = 'state';
@@ -41,7 +41,7 @@ var Parser = (function (undefined) {
       // Separator found, now looking for classification
       var separator_found = separator.exec(trimmed);
       if (separator_found && mode === 'state') {
-        parsing_task = false;
+        reset();
         current_state = undefined;
         mode = 'classification';
         continue;
@@ -49,7 +49,7 @@ var Parser = (function (undefined) {
 
       // Looking for a task definition
       var task_found = task_header.exec(trimmed);
-      if (!parsing_task && task_found) {
+      if (task_found) {
         parsing_task = true;
         starting_details = true;
         current_task = get_id(task_found[1]);
@@ -117,7 +117,7 @@ var Parser = (function (undefined) {
           categories[current_category] = {
             id: current_category,
             name: category_found[1],
-            color: category_found[2] || DEFAULT_TASK_COLOR
+            color: category_found[2] || undefined
           };
           continue;
         }
@@ -140,7 +140,6 @@ var Parser = (function (undefined) {
       }
     }
 
-    console.dir(tasks);
     return {
       tasks: tasks,
       states: states,

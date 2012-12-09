@@ -15,7 +15,7 @@ the first time you visit the demo.
 
 ## Why to use it?
 
-μTask is here to provide two things: an (almost) language independant rules to define tasks and visual feedback.
+μTask is here to provide two things: a language-independant set of rules to define tasks and visual feedback.
 
 You can use the rules to open a simple txt document and keep your tasks organized but you can copy the contents of
 that document to the editor pad and get a visual representation of how are you doing.
@@ -24,12 +24,12 @@ that document to the editor pad and get a visual representation of how are you d
 
 μTask is based on personal experience. So here I'm describing a method working for me:
 
-When I face several tasks to do, I try to split them into different subtasks and write them into post-its I stick
-in a board. Each post-it has a number, so I can refer to the task in an unique form; a short description and
+When I face several tasks to do, I try to split them into different subtasks and write them into sticky-notes I stick
+in a board. Each sticky-note has a number, so I can refer to the task in an unique form; a short description and
 an estimation (maybe a deadline too). I keep some empty space to track the completion of the task or to add some
 notes, details or clarifications.
 
-Normally I use distinct colours for different tasks / projects. The precise semantics about colors and post-its
+Normally I use distinct colours for different tasks / projects. The precise semantics about colors and sticky-notes
 is up to you.
 
 ## Syntax
@@ -37,7 +37,7 @@ is up to you.
 Write tasks is quite simple, this is the skeleton of a complete task:
 
 ```
-Task <here the name>[: <here the description>]
+\# <here the name>[: <here the description>]
 [<Here the details, >]
 [<you can break lines if you want.>]
 [>> [[<completed>/]<total>] [(<year>/<month>/<day>)]
@@ -53,7 +53,7 @@ to see the results:
 **Task with name**
 ```
 To do:
-  Task tutorial
+  # tutorial
 ```
 
 Note we are putting the `Task tutorial` inside the state `To do`. You will read more about this in the next section.
@@ -62,13 +62,13 @@ If you want your task to be displayed you need to put it in some state.
 **Task with description**
 ```
 To do:
-  Task tutorial: Read the μTask documentation
+  # tutorial: Read the μTask documentation
 ```
 
 **Task with description and details**
 ```
 To do:
-  Task tutorial: Read the μTask documentation
+  # tutorial: Read the μTask documentation
   Start with Syntax section and see some examples
   in the following sections. URL:
   https://github.com/lodr/mtask
@@ -77,7 +77,7 @@ To do:
 **Task with description, details & completion**
 ```
 To do:
-  Task 1: Read the μTask documentation
+  # 1: Read the μTask documentation
   Start with Syntax section and see some examples
   in the following sections. URL:
   https://github.com/lodr/mtask
@@ -89,7 +89,7 @@ not say `1.5h/5h`. Note μTask does not understand what `h` means (yet). It just
 **Task with description, details, completion and a deadline**
 ```
 To do:
-  Task 1: Read the μTask documentation
+  # 1: Read the μTask documentation
   Start with Syntax section and see some examples
   in the following sections. URL:
   https://github.com/lodr/mtask
@@ -99,7 +99,7 @@ To do:
 **Only a deadline and a description**
 ```
 To do:
-  Task 1: Read the μTask documentation
+  # 1: Read the μTask documentation
   >> (2013/12/31)
 ```
 
@@ -111,13 +111,13 @@ You can write tasks more than once, any time you use the same name, you are upda
 
 ```
 To do:
-  Task 1
+  # 1
 ```
 
 Your task has only a name. Write this after:
 
 ```
-Task 1: Now with description
+\# 1: Now with description
 And further details
 ```
 
@@ -125,7 +125,7 @@ Now your task has a description and details.
 
 ### The kanban
 
-The [kanban board](http://en.wikipedia.org/wiki/Kanban_board) is the board where I stick my post-its. So it is the place
+The [kanban board](http://en.wikipedia.org/wiki/Kanban_board) is the board where I stick my notes. So it is the place
 where your tasks will end.
 
 If you want to see your task rendered, it is not enough to describe it, you have to put them inside some state.
@@ -140,15 +140,15 @@ which are in this state.
 
 ```
 To do:
-  Task 4: Read "Clasifying tasks" section
-  Task 5: Read "Colour your world" section
+  # 4: Read "Clasifying tasks" section
+  # 5: Read "Colour your world" section
   
 Doing:
-  Task 3: Read "The kanban" section
+  # 3: Read "The kanban" section
 
 Done:
-  Task 1: Read "Practical examples" section
-  Task 2: Read "Updating a task" section
+  # 1: Read "Practical examples" section
+  # 2: Read "Updating a task" section
 ```
 
 Trick: Use cut and paste to move your tasks from one state to another.
@@ -160,15 +160,15 @@ You can classify your tasks inside a topic. To do this, add two dashes to your k
 
 ```
 To do:
-  Task 5: Read "Colour your world" section
+  # 5: Read "Colour your world" section
   
 Doing:
-  Task 4: Read "Clasifying tasks" section
+  # 4: Read "Clasifying tasks" section
 
 Done:
-  Task 1: Read "Practical examples" section
-  Task 2: Read "Updating a task" section
-  Task 3: Read "The kanban" section
+  # 1: Read "Practical examples" section
+  # 2: Read "Updating a task" section
+  # 3: Read "The kanban" section
 
 --
 
@@ -178,26 +178,26 @@ After the two dashes you can define topics by writing a name, two dots `:` and p
 
 ```
 To do:
-  Task 5: Read "Colour your world" section
+  # 5: Read "Colour your world" section
 
 Doing:
-  Task 4: Read "Clasifying tasks" section
+  # 4: Read "Clasifying tasks" section
 
 Done:
-  Task 1: Read "Practical examples" section
-  Task 2: Read "Updating a task" section
-  Task 3: Read "The kanban" section
+  # 1: Read "Practical examples" section
+  # 2: Read "Updating a task" section
+  # 3: Read "The kanban" section
 
 --
 
 Syntax:
-  Task 1: Read "Practical examples" section
-  Task 2: Read "Updating a task" section
-  Task 5: Read "Colour your world" section
+  # 1: Read "Practical examples" section
+  # 2: Read "Updating a task" section
+  # 5: Read "Colour your world" section
 
 Areas:
-  Task 3: Read "The kanban" section
-  Task 4: Read "Clasifying tasks" section
+  # 3: Read "The kanban" section
+  # 4: Read "Clasifying tasks" section
 
 ```
 
@@ -212,42 +212,42 @@ After a topic, use `(<color in #RGB>)` to indicate a color.
 To do:
   
 Doing:
-  Task 5: Read "Colour your world" section
+  # 5: Read "Colour your world" section
 
 Done:
-  Task 1: Read "Practical examples" section
-  Task 2: Read "Updating a task" section
-  Task 3: Read "The kanban" section
-  Task 4: Read "Clasifying tasks" section
+  # 1: Read "Practical examples" section
+  # 2: Read "Updating a task" section
+  # 3: Read "The kanban" section
+  # 4: Read "Clasifying tasks" section
 
 --
 
 Syntax (#FF8C34):
-  Task 1: Read "Practical examples". section
+  # 1: Read "Practical examples". section
   Go to http://github.com/lodr/mtask and start reading.
   See how task 1 is a very simple way to define a task ;)
   >> 3/3
 
-  Task 2: Read "Updating a task" section
+  # 2: Read "Updating a task" section
   Note how we are updating the task 2 by adding further
   details. You could omit repeating the description, only
   the name is needed to refer a former task.
   >> 3/3
 
-  Task 5: Read "Colour your world" section
+  # 5: Read "Colour your world" section
   Adding colour to tasks help you to distinguish what
   to do.
   >> 2/3
 
 Areas (#F71BBA):
-  Task 3: Read "The kanban" section
+  # 3: Read "The kanban" section
   Keep your kanban as simple as possible. Task there should
   only have the name and description at most. Remember you
   can use any text as names. If you choose short names instead
   of numbers you could omit the description as well.
   >> 3/3
 
-  Task 4: Read "Clasifying tasks" section
+  # 4: Read "Clasifying tasks" section
   The classification section was though to be the starting point.
   Start by describing and classifying your tasks, then put them
   in different states while you complete them.
