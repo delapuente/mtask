@@ -37,7 +37,7 @@ is up to you.
 Write tasks is quite simple, this is the skeleton of a complete task:
 
 ```
-\# <here the name>[: <here the description>]
+# <here the name>[: <here the description>]
 [<Here the details, >]
 [<you can break lines if you want.>]
 [>> [[<completed>/]<total>] [(<year>/<month>/<day>)]
@@ -117,7 +117,7 @@ To do:
 Your task has only a name. Write this after:
 
 ```
-\# 1: Now with description
+# 1: Now with description
 And further details
 ```
 
