@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <title>μTask</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="lib/ace/ace.js"></script>
+  <script type="text/javascript" src="lib/updater/updater.js"></script>
   <script type="text/javascript" src="src/parser.js"></script>
   <script type="text/javascript" src="src/render.js"></script>
-  <script type="text/javascript" src="lib/updater/updater.js"></script>
   <script type="text/javascript" src="src/updater.js"></script>
   <script type="text/javascript" src="src/board.js" defer></script>
 </head>
@@ -16,7 +17,7 @@
       <section id="toolbar">
         ◀
       </section>
-      <textarea contenteditable id="editpad">To do:
+      <div id="editpad">To do:
   # 13: Add task icons
   # 15: Default named colors
   # 16: Style progress bars
@@ -99,7 +100,7 @@ Syntax (#30E266):
 
   # 14: Syntax for priorities
   Think about a syntax for priorities
-  >> 1h/4h (01/2014)</textarea>
+  >> 1h/4h (01/2014)</div>
     </section>
   </section>
   <section id="board">

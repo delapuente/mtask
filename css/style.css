@@ -71,7 +71,7 @@ p {
 #editpad {
   text-align: left;
   font-family: monospace;
-  overflow: auto;
+  overflow: none;
   width: 80ex;
   height: 100%;
   display: inline-block;
@@ -82,6 +82,8 @@ p {
 
   border: none;
   padding: .5em;
+
+  position: relative;
 }
 
 #editpad.modified {
