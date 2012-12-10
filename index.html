@@ -12,142 +12,142 @@
   <script type="text/javascript" src="src/board.js" defer></script>
 </head>
 <body>
-  <section class="tool-overlay">
-    <section class="tools">
-      <section id="toolbar">
-        ◀
+  <div id="editor-wrapper" class="show">
+    <section id="editpad">To do:
+    # 13: Add task icons
+    # 15: Default named colors
+    # 16: Style progress bars
+
+  Doing:
+    # 14: Syntax for priorities
+    # 9: Syntax for tags
+    # 10: Syntax for people assignements
+
+  Done:
+    # 1: Compatibilize layout
+    # 2: Flow integrity
+    # 6: Definition parser
+    # 7: Classification parser
+    # 8: Syntax for categories
+    # 11: Syntax for completion
+    # 12: Syntax for due dates
+
+  Unscheduled:
+    # 3: Dynamic kanban
+    # 4: Dynamic flows
+    # 5: Interactive board
+
+  --
+
+  Features:
+
+    # 1: Compatibilize layout
+    Make the layout compatible with Chrome
+
+    # 2: Flow integrity
+    Ensure you cannot add the same task to more than one step
+
+    # 5: Interactive board
+    Allow the user to use the board view to move tasks from one step to another
+
+    # 13: Add task icons
+    Icons to indicate completion and due date
+
+    # 15: Default named colors
+    Add some named colors instead of #rgb colors
+
+    # 16: Style progress bars
+    Add CSS to style progress bar for completion
+
+  Kanban & Flow themes (#FF8C34):
+
+    # 3: Dynamic kanban
+    Make kanban layout dynamic and based on themes
+
+    # 4: Dynamic flows
+    Make flow transitions dynamic and based on themes
+
+  Parsers (#F71BBA):
+
+    # 6: Definition parser
+    Implement the parser for definitions
+
+    # 7: Classification parser
+    Implement the parser for classification of tasks
+
+  Syntax (#30E266):
+
+    # 8: Syntax for categories
+    Think about some syntax to present categories
+
+    # 9: Syntax for tags
+    Think about some syntax to tag tasks
+    >> 1h/4h (01/2014)
+
+    # 10: Syntax for people assignements
+    Think about some syntax to indicate people assignements
+    >> 1h/4h (01/2014)
+
+    # 11: Syntax for completion
+    Think about some syntax to indicate completion
+
+    # 12: Syntax for due dates
+    Think about some syntax to indicate a deadline
+
+    # 14: Syntax for priorities
+    Think about a syntax for priorities
+    >> 1h/4h (01/2014)</section>
+  </div>
+  <div id="content-wrapper">
+    <menu type="toolbar" id="toolbar">
+      <label title="Click me to hide/show the source"><input id="show-source" type="checkbox" checked/><span># source</span></label>
+    </menu>
+    <div id="board-viewport">
+      <section id="board">
+        <div class="group vertical">
+          <div class="group horizontal">
+            <section id="to_do" class="state">
+              <header>
+                <hgroup>
+                  <h1>To do:</h1>
+                </hgroup>
+              </header>
+              <section>
+              </section>
+            </section>
+            <section id="doing" class="state">
+              <header>
+                <hgroup>
+                  <h1>Doing:</h1>
+                </hgroup>
+              </header>
+              <section>
+              </section>
+            </section>
+            <section id="done" class="state">
+              <header>
+                <hgroup>
+                  <h1>Done:</h1>
+                </hgroup>
+              </header>
+              <section>
+              </section>
+            </section>
+          </div>
+          <div class="group horizontal">
+            <section id="unscheduled" class="state">
+              <header>
+                <hgroup>
+                  <h1>Unscheduled:</h1>
+                </hgroup>
+              </header>
+              <section>
+              </section>
+            </section>
+          </div>
+        </div>
       </section>
-      <div id="editpad">To do:
-  # 13: Add task icons
-  # 15: Default named colors
-  # 16: Style progress bars
-
-Doing:
-  # 14: Syntax for priorities
-  # 9: Syntax for tags
-  # 10: Syntax for people assignements
-
-Done:
-  # 1: Compatibilize layout
-  # 2: Flow integrity
-  # 6: Definition parser
-  # 7: Classification parser
-  # 8: Syntax for categories
-  # 11: Syntax for completion
-  # 12: Syntax for due dates
-
-Unscheduled:
-  # 3: Dynamic kanban
-  # 4: Dynamic flows
-  # 5: Interactive board
-
---
-
-Features:
-
-  # 1: Compatibilize layout
-  Make the layout compatible with Chrome
-
-  # 2: Flow integrity
-  Ensure you cannot add the same task to more than one step
-
-  # 5: Interactive board
-  Allow the user to use the board view to move tasks from one step to another
-
-  # 13: Add task icons
-  Icons to indicate completion and due date
-
-  # 15: Default named colors
-  Add some named colors instead of #rgb colors
-
-  # 16: Style progress bars
-  Add CSS to style progress bar for completion
-
-Kanban & Flow themes (#FF8C34):
-
-  # 3: Dynamic kanban
-  Make kanban layout dynamic and based on themes
-
-  # 4: Dynamic flows
-  Make flow transitions dynamic and based on themes
-
-Parsers (#F71BBA):
-
-  # 6: Definition parser
-  Implement the parser for definitions
-
-  # 7: Classification parser
-  Implement the parser for classification of tasks
-
-Syntax (#30E266):
-
-  # 8: Syntax for categories
-  Think about some syntax to present categories
-
-  # 9: Syntax for tags
-  Think about some syntax to tag tasks
-  >> 1h/4h (01/2014)
-
-  # 10: Syntax for people assignements
-  Think about some syntax to indicate people assignements
-  >> 1h/4h (01/2014)
-
-  # 11: Syntax for completion
-  Think about some syntax to indicate completion
-
-  # 12: Syntax for due dates
-  Think about some syntax to indicate a deadline
-
-  # 14: Syntax for priorities
-  Think about a syntax for priorities
-  >> 1h/4h (01/2014)</div>
-    </section>
-  </section>
-  <section id="board">
-    <div class="group vertical">
-      <div class="group horizontal">
-        <section id="to_do" class="state">
-          <header>
-            <hgroup>
-              <h1>To do:</h1>
-            </hgroup>
-          </header>
-          <section>
-          </section>
-        </section>
-        <section id="doing" class="state">
-          <header>
-            <hgroup>
-              <h1>Doing:</h1>
-            </hgroup>
-          </header>
-          <section>
-          </section>
-        </section>
-        <section id="done" class="state">
-          <header>
-            <hgroup>
-              <h1>Done:</h1>
-            </hgroup>
-          </header>
-          <section>
-          </section>
-        </section>
-      </div>
-      <div class="group horizontal">
-        <section id="unscheduled" class="state">
-          <header>
-            <hgroup>
-              <h1>Unscheduled:</h1>
-            </hgroup>
-          </header>
-          <section>
-          </section>
-        </section>
-      </div>
     </div>
-  </section>
+  </div>
 </body>
 </html>
-
-

@@ -12,6 +12,7 @@ function update(callback) {
       }
     }]
   ]);
+
   var progress = updater.start_update('1.0.0');
   if (!progress.is_updated) {
     var step = updater.next();

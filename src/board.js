@@ -33,6 +33,13 @@
     if (localText)
       editor.setValue(localText);
 
+    var show_source = document.getElementById('show-source');
+    var editor_wrapper = document.getElementById('editor-wrapper');
+    show_source.addEventListener('click', function () {
+      editor_wrapper.classList[show_source.checked ? 'add' : 'remove']('show');
+      editor.resize();
+    });
+
     parse_and_draw();
   });
 
