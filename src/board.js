@@ -3,28 +3,42 @@
 
   'use strict';
 
-  var editpad = document.getElementById('editpad');
-  function parse_and_draw() {
-    var result = Parser.parse(editpad.value);
-    Render.draw_tasks(result.tasks, result.categories);
-  }
+  update(function () {
 
-  update(function () { 
+    var editpad = document.getElementById('editpad');
+    var editor = ace.edit('editpad');
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/text");
+    editor.getSession().setTabSize(2);
+    editor.getSession().setUseSoftTabs(true);
+
+    function parse_and_draw() {
+      var result = Parser.parse(editor.getValue());
+      Render.draw_tasks(result.tasks, result.categories);
+    }
+
     var timeToSave = 0;
-    editpad.addEventListener('input', function (evt) {
+    editor.getSession().on('change', function (evt) {
       editpad.classList.add('modified');
       clearTimeout(timeToSave);
       timeToSave = setTimeout(function save() {
-        localStorage['text'] = editpad.value;
+        localStorage['text'] = editor.getValue();
         editpad.classList.remove('modified');
       }, 1000);
     });
 
-    editpad.addEventListener('input', parse_and_draw);
+    editor.getSession().on('change', parse_and_draw);
 
     var localText = localStorage['text'];
     if (localText)
-      editpad.value = localText;
+      editor.setValue(localText);
+
+    var show_source = document.getElementById('show-source');
+    var editor_wrapper = document.getElementById('editor-wrapper');
+    show_source.addEventListener('click', function () {
+      editor_wrapper.classList[show_source.checked ? 'add' : 'remove']('show');
+      editor.resize();
+    });
 
     parse_and_draw();
   });
