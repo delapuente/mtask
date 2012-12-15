@@ -87,7 +87,32 @@ var Render = (function (undefined) {
       'color': text,
       'border-color': wrap_hsl(border)
     };
-  };
+  }
+
+  function set_task(evt) {
+    evt.dataTransfer.setData('task', evt.target.dataset.taskId);
+    console.log('Moving task ' + evt.target.dataset.taskId);
+  }
+
+  function enable_highlight(evt) {
+    evt.target.classList.add('destiny');
+    console.log('Entering on ' + evt.target.id);
+  }
+
+  function disable_highlight(evt) {
+    evt.tager.classList.remove('destiny');
+    console.log('Leaving on ' + evt.target.id);
+  }
+
+  function set_state(evt) {
+    var is_task = evt.dataTransfer.types.contains('taks');
+    if (!is_taks)
+      return;
+
+    evt.preventDefault();
+    var state = evt.target.id;
+    console.log(evt.dataTransfer.getData('task') + '.state = ' + state);
+  }
 
   function new_task_item(task, categories) {
     var task_text = 'Task';
@@ -128,6 +153,9 @@ var Render = (function (undefined) {
     article.innerHTML = html;
     article.classList.add('task');
     article.setAttribute('contenteditable', 'false');
+    article.setAttribute('draggable', 'true');
+    article.dataset.taskId = task.id;
+    article.addEventListener('dragstart', set_task);
     if (task.category) {
       var color = categories[task.category].color || DEFAULT_TASK_COLOR;
       var color_scheme = get_color_scheme(color);
@@ -155,6 +183,14 @@ var Render = (function (undefined) {
       }
     }
   }
+
+  var states = document.querySelectorAll('.state');
+  [].forEach.call(states, function(state) {
+    console.log('Installing listeners ' + state.id);
+    state.addEventListener('dragenter', enable_highlight);
+    state.addEventListener('dragleave', disable_highlight);
+    state.addEventListener('dragover', set_state);
+  });
 
   return {
     draw_tasks: draw_tasks

@@ -138,6 +138,10 @@ p {
   padding: 1rem;
 }
 
+.destiny {
+  background-color: blue;
+}
+
 .task {
   position: relative;
   min-width: 10rem;
