@@ -29,7 +29,7 @@ var Parser = (function (undefined) {
     var mode = 'state';
 
     reset();
-    var lines = source.split('\n');
+    var lines = Array.isArray(source) ? source : source.split('\n');
     var current_task, current_state, current_category;
     for (var i=0, len=lines.length; i<len; i++) {
 
@@ -52,13 +52,15 @@ var Parser = (function (undefined) {
       if (task_found) {
         parsing_task = true;
         starting_details = true;
-        current_task = get_id(task_found[1]);
+        var verbose_id = task_found[1];
+        current_task = get_id(verbose_id);
 
         // not already defined, create new
         if (!tasks[current_task]) {
           tasks[current_task] = {
             id: current_task,
-            description: task_found[2] || task_found[1],
+            verbose_id: verbose_id,
+            description: task_found[2] || verbose_id,
             category: current_category,
             state: current_state
           };

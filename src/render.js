@@ -91,26 +91,24 @@ var Render = (function (undefined) {
 
   function set_task(evt) {
     evt.dataTransfer.setData('task', evt.target.dataset.taskId);
-    console.log('Moving task ' + evt.target.dataset.taskId);
   }
 
-  function enable_highlight(evt) {
-    evt.target.classList.add('destiny');
-    console.log('Entering on ' + evt.target.id);
-  }
-
-  function disable_highlight(evt) {
-    evt.tager.classList.remove('destiny');
-    console.log('Leaving on ' + evt.target.id);
-  }
-
-  function set_state(evt) {
-    var is_task = evt.dataTransfer.types.contains('taks');
-    if (!is_taks)
+  function on_dragover(evt) {
+    var is_task = evt.dataTransfer.types.contains('task');
+    if (!is_task)
       return;
 
     evt.preventDefault();
-    var state = evt.target.id;
+    evt.currentTarget.classList.add('valid-destiny');
+  }
+
+  function disable_highlight(evt) {
+    evt.currentTarget.classList.remove('valid-destiny');
+  }
+
+  function set_state(evt) {
+    var state = evt.currentTarget.id;
+    evt.currentTarget.classList.remove('valid-destiny');
     console.log(evt.dataTransfer.getData('task') + '.state = ' + state);
   }
 
@@ -186,10 +184,9 @@ var Render = (function (undefined) {
 
   var states = document.querySelectorAll('.state');
   [].forEach.call(states, function(state) {
-    console.log('Installing listeners ' + state.id);
-    state.addEventListener('dragenter', enable_highlight);
+    state.addEventListener('dragover', on_dragover);
     state.addEventListener('dragleave', disable_highlight);
-    state.addEventListener('dragover', set_state);
+    state.addEventListener('drop', set_state);
   });
 
   return {
