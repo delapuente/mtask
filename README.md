@@ -11,7 +11,7 @@ This is only a concept version but you can try and give me feedback ;)
 The current state of the project is indeed the example you can find if it is
 the first time you visit the demo.
 
-[Try μTask now](http://lodr.github.com/mtask)!
+[Try μTask now](http://delapuente.github.com/mtask)!
 
 ## Why to use it?
 
